@@ -23,67 +23,84 @@
       ]"
     />
     <form class="flex flex-col gap-4 p-4" @submit.prevent="saveItem">
+
+      <div class="flex gap-2" >
+        <TField
+          v-if="!$route.query.type"
+          v-model="item.receiver"
+          component="TInputProfile"
+          placeholder="Search on WeDance"
+          :description="showForm ? `If you can't find a profile, use Place or Link tab` : ''"
+  
+          hide-label
+        />
+        <TField
+          v-if="$route.query.type === 'place'"
+          v-model="item.venue"
+          component="TInputVenue"
+          hide-areas
+          placeholder="Search on Google Maps"
+          description="Better use a name of the place, rather than an address"
+          hide-label
+        />
+        <TField
+          v-if="$route.query.type === 'link'"
+          v-model="item.link"
+          component="TInput"
+          type="url"
+          required
+          placeholder="https://"
+          description="Link to a website, Instagram, Facebook page, Whatsapp group, etc"
+          hide-label
+        />
+        <TField
+          v-if="!hidePlace"
+          v-model="item.place"
+          label="Which city?"
+          component="TInputPlace"
+          label-position="top"
+          global
+        />
+        <TField
+          v-if="!hideDance"
+          v-model="item.style"
+          label="Dance style"
+          label-position="top"
+          component="TInputStyle"
+          popular-only
+        />
+
+        <TButton
+        class="w-[70%] p-0 h-10 border-none outline-none "
+        type="primary"
+        v-if="!showForm"
+        @click="showForm=true">Ask for recommendation
+      </TButton>
+      </div>
+
+
       <TField
-        v-if="!$route.query.type"
-        v-model="item.receiver"
-        component="TInputProfile"
-        placeholder="Search on WeDance"
-        description="If you can't find a profile, use Place or Link tab"
-        hide-label
-      />
-      <TField
-        v-if="$route.query.type === 'place'"
-        v-model="item.venue"
-        component="TInputVenue"
-        hide-areas
-        placeholder="Search on Google Maps"
-        description="Better use a name of the place, rather than an address"
-        hide-label
-      />
-      <TField
-        v-if="$route.query.type === 'link'"
-        v-model="item.link"
-        component="TInput"
-        type="url"
-        required
-        placeholder="https://"
-        description="Link to a website, Instagram, Facebook page, Whatsapp group, etc."
-        hide-label
-      />
-      <TField
-        v-if="!hidePlace"
-        v-model="item.place"
-        label="Which city?"
-        component="TInputPlace"
-        label-position="top"
-        global
-      />
-      <TField
-        v-if="!hideDance"
-        v-model="item.style"
-        label="Dance style"
-        label-position="top"
-        component="TInputStyle"
-        popular-only
-      />
-      <TField
+      v-if="showForm"
         v-model="item.stars"
         placeholder="stars"
         hide-label
         component="TRatingInput"
       />
       <TField
+      v-if="showForm"
         v-model="item.description"
         label-position="top"
         component="TInputTextarea"
         placeholder="Share your experience"
       />
+
+
       <div class="flex justify-end gap-2">
         <TButton v-if="!hideCancel" variant="secondary" @click="cancel"
           >Cancel</TButton
         >
         <TButton v-if="id" variant="secondary" @click="remove">Delete</TButton>
-        <TButton xtype="submit" variant="primary">Submit</TButton>
+        <TButton v-if="showForm" xtype="submit" variant="primary">Submit</TButton>
       </div>
     </form>
   </div>
@@ -215,7 +232,7 @@ export default {
   setup(props, { root }) {
     const item = ref({})
     const id = ref(null)
-
+    const showForm = ref(false)
     const { profile, uid, can } = useAuth()
 
     onMounted(async () => {
@@ -288,6 +305,7 @@ export default {
       profile,
       id,
       uid,
+      showForm
     }
   },
 }
