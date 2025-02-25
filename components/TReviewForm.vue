@@ -24,18 +24,19 @@
       ]"
     />
     <form class="flex flex-col gap-4 p-4" @submit.prevent="saveItem">
-
-      <div class="flex  justify-center items-center pt-4" >
+      <div class="flex  justify-center items-center pt-4">
         <TField
           v-if="!$route.query.type && showForm"
           v-model="item.receiver"
           component="TInputProfile"
           placeholder="Search on WeDance"
-          :description="showForm ? `If you can't find a profile, use Place or Link tab` : ''"
+          :description="
+            showForm ? `If you can't find a profile, use Place or Link tab` : ''
+          "
           hide-label
         />
         <TField
-          v-if="$route.query.type === 'place' &&showForm"
+          v-if="$route.query.type === 'place' && showForm"
           v-model="item.venue"
           component="TInputVenue"
           hide-areas
@@ -44,7 +45,7 @@
           hide-label
         />
         <TField
-          v-if="$route.query.type === 'link' && showForm "
+          v-if="$route.query.type === 'link' && showForm"
           v-model="item.link"
           component="TInput"
           type="url"
@@ -71,36 +72,37 @@
         />
 
         <TButton
-        class="text-sm"
-        type="primary"
-        v-if="!showForm"
-        @click="showForm=true">Recommend an Organiser
-      </TButton>
+          v-if="!showForm"
+          class="text-sm"
+          type="primary"
+          @click="showForm = true"
+          >Recommend an Organiser
+        </TButton>
       </div>
 
-
       <TField
-      v-if="showForm"
+        v-if="showForm"
         v-model="item.stars"
         placeholder="stars"
         hide-label
         component="TRatingInput"
       />
       <TField
-      v-if="showForm"
+        v-if="showForm"
         v-model="item.description"
         label-position="top"
         component="TInputTextarea"
         placeholder="Share your experience"
       />
 
-
       <div class="flex justify-end gap-2">
         <TButton v-if="!hideCancel" variant="secondary" @click="cancel"
           >Cancel</TButton
         >
         <TButton v-if="id" variant="secondary" @click="remove">Delete</TButton>
-        <TButton v-if="showForm" xtype="submit" variant="primary">Submit</TButton>
+        <TButton v-if="showForm" xtype="submit" variant="primary"
+          >Submit</TButton
+        >
       </div>
     </form>
   </div>
@@ -305,7 +307,7 @@ export default {
       profile,
       id,
       uid,
-      showForm
+      showForm,
     }
   },
 }
