@@ -1,6 +1,7 @@
 <template>
   <div>
     <tw-tabs
+      v-if="!showForm"
       :tabs="[
         {
           name: 'Profile',
@@ -28,7 +29,7 @@
         <TField
           v-if="!$route.query.type"
           v-model="item.receiver"
-          component="TInputProfile"
+          :component=" TInputProfile"
           placeholder="Search on WeDance"
           :description="showForm ? `If you can't find a profile, use Place or Link tab` : ''"
   
