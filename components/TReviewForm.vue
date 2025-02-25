@@ -1,7 +1,7 @@
 <template>
   <div>
     <tw-tabs
-      v-if="!showForm"
+      v-if="showForm"
       :tabs="[
         {
           name: 'Profile',
@@ -25,18 +25,17 @@
     />
     <form class="flex flex-col gap-4 p-4" @submit.prevent="saveItem">
 
-      <div class="flex gap-2" >
+      <div class="flex gap-2 justify-center" >
         <TField
-          v-if="!$route.query.type"
+          v-if="!$route.query.type && showForm"
           v-model="item.receiver"
-          :component=" TInputProfile"
+          component="TInputProfile"
           placeholder="Search on WeDance"
           :description="showForm ? `If you can't find a profile, use Place or Link tab` : ''"
-  
           hide-label
         />
         <TField
-          v-if="$route.query.type === 'place'"
+          v-if="$route.query.type === 'place' &&showForm"
           v-model="item.venue"
           component="TInputVenue"
           hide-areas
@@ -45,7 +44,7 @@
           hide-label
         />
         <TField
-          v-if="$route.query.type === 'link'"
+          v-if="$route.query.type === 'link' && showForm "
           v-model="item.link"
           component="TInput"
           type="url"
@@ -72,10 +71,10 @@
         />
 
         <TButton
-        class="w-[70%] p-0 h-10 border-none outline-none "
+       
         type="primary"
         v-if="!showForm"
-        @click="showForm=true">Ask for recommendation
+        @click="showForm=true">Recommend an Organiser
       </TButton>
       </div>
 
