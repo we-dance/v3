@@ -25,7 +25,7 @@
     />
     <form class="flex flex-col gap-4 p-4" @submit.prevent="saveItem">
 
-      <div class="flex gap-2 justify-center" >
+      <div class="flex  justify-center items-center pt-4" >
         <TField
           v-if="!$route.query.type && showForm"
           v-model="item.receiver"
@@ -71,7 +71,7 @@
         />
 
         <TButton
-       
+        class="text-sm"
         type="primary"
         v-if="!showForm"
         @click="showForm=true">Recommend an Organiser
