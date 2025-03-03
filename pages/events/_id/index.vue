@@ -209,6 +209,10 @@
         </div>
       </div>
 
+      <div v-if="doc.stripePricingTable" class="border-b py-4 px-4">
+        <div ref="stripePricingTableContainer" class="stripe-pricing-table-container"></div>
+      </div>
+
       <div
         class="top-0 z-40 flex flex-wrap justify-center items-center gap-2 bg-white p-4 shadow"
         :class="can('edit', 'events', doc) ? '' : 'sticky'"
@@ -945,6 +949,24 @@ export default {
 
       this.venueProfile = docs.length ? docs[0].data() : null
     },
+    renderStripePricingTable() {
+      if (!this.$refs.stripePricingTableContainer) return
+      
+      // Clear the container before adding new content
+      this.$refs.stripePricingTableContainer.innerHTML = ''
+      
+      // Create a safe Stripe pricing table element
+      const stripePricingTableElement = document.createElement('div')
+      stripePricingTableElement.innerHTML = this.doc.stripePricingTable
+      
+      // Add only stripe-pricing-table elements
+      const pricingTableElements = stripePricingTableElement.querySelectorAll('stripe-pricing-table')
+      if (pricingTableElements.length > 0) {
+        pricingTableElements.forEach(element => {
+          this.$refs.stripePricingTableContainer.appendChild(element)
+        })
+      }
+    },
   },
   head() {
     return getEventMeta(this.doc)
@@ -1147,6 +1169,16 @@ export default {
       ticketTailorPopup,
       getEventTypeLabel,
       getStyles,
+    }
+  },
+  mounted() {
+    if (this.doc && this.doc.stripePricingTable) {
+      this.renderStripePricingTable()
+    }
+  },
+  updated() {
+    if (this.doc && this.doc.stripePricingTable && this.$refs.stripePricingTableContainer) {
+      this.renderStripePricingTable()
     }
   },
 }
