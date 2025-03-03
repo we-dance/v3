@@ -58,6 +58,19 @@
       </div>
     </TPopup>
 
+    <TPopup
+      v-if="stripePricingPopup"
+      title="Buy Tickets"
+      @close="stripePricingPopup = false"
+    >
+      <div class="w-full max-w-lg p-4">
+        <div v-if="doc.stripePricingTable" ref="stripePricingTablePopupContainer" class="stripe-pricing-table-container"></div>
+        <div v-else class="text-center py-4">
+          <p>No ticket options available for this event.</p>
+        </div>
+      </div>
+    </TPopup>
+
     <template v-if="doc.type === 'event'">
       <WProfile
         v-if="doc.org"
@@ -209,10 +222,6 @@
         </div>
       </div>
 
-      <div v-if="doc.stripePricingTable" class="border-b py-4 px-4">
-        <div ref="stripePricingTableContainer" class="stripe-pricing-table-container"></div>
-      </div>
-
       <div
         class="top-0 z-40 flex flex-wrap justify-center items-center gap-2 bg-white p-4 shadow"
         :class="can('edit', 'events', doc) ? '' : 'sticky'"
@@ -224,20 +233,12 @@
           @click="buyTicket()"
           >{{ $t('event.buyTicket') }}</TButton
         >
-        <TReaction
+        <TButton
           v-else
           type="primary"
-          toggled-class="bg-green-500 hover:bg-green-800"
-          :label="$t('event.attend')"
-          :toggled-label="$t('event.attending')"
-          icon="CheckIcon"
-          toggled-icon="CheckIcon"
-          field="star"
-          class="rounded-full"
-          hide-count
-          :item="doc"
-          @joined="attend()"
-        />
+          @click="openStripePricingTable()"
+          >{{ $t('event.buyTicket') }}</TButton
+        >
         <TEventBookmark
           :event-id="doc.id"
           :event="doc"
@@ -825,6 +826,7 @@ export default {
     venueProfile: null,
     addComment: false,
     subscribePopup: false,
+    stripePricingPopup: false,
   }),
   computed: {
     eventLimit() {
@@ -914,6 +916,15 @@ export default {
         this.buyTicketLink()
       }
     },
+    openStripePricingTable() {
+      this.$track('buy_ticket_stripe')
+      this.stripePricingPopup = true
+      
+      // Use nextTick to ensure the DOM element is rendered
+      this.$nextTick(() => {
+        this.renderStripePricingTable()
+      })
+    },
     buyTicketLink() {
       if (!this.doc.link) {
         return
@@ -932,7 +943,13 @@ export default {
     },
     attend() {
       this.$track('attend')
-      this.buyTicket()
+      
+      // Now using openStripePricingTable instead of buyTicket
+      if (this.doc.stripePricingTable) {
+        this.openStripePricingTable()
+      } else {
+        this.buyTicket()
+      }
     },
     async loadVenue() {
       if (!this.doc?.venue?.place_id) {
@@ -950,10 +967,10 @@ export default {
       this.venueProfile = docs.length ? docs[0].data() : null
     },
     renderStripePricingTable() {
-      if (!this.$refs.stripePricingTableContainer) return
+      if (!this.$refs.stripePricingTablePopupContainer) return
       
       // Clear the container before adding new content
-      this.$refs.stripePricingTableContainer.innerHTML = ''
+      this.$refs.stripePricingTablePopupContainer.innerHTML = ''
       
       // Create a safe Stripe pricing table element
       const stripePricingTableElement = document.createElement('div')
@@ -963,7 +980,7 @@ export default {
       const pricingTableElements = stripePricingTableElement.querySelectorAll('stripe-pricing-table')
       if (pricingTableElements.length > 0) {
         pricingTableElements.forEach(element => {
-          this.$refs.stripePricingTableContainer.appendChild(element)
+          this.$refs.stripePricingTablePopupContainer.appendChild(element)
         })
       }
     },
@@ -1005,6 +1022,7 @@ export default {
     const org = ref({})
     const reviews = ref([])
     const editingArtists = ref(false)
+    const stripePricingPopup = ref(false)
 
     async function saveAgenda(agenda) {
       for (const itemIndex in agenda.items) {
@@ -1169,15 +1187,14 @@ export default {
       ticketTailorPopup,
       getEventTypeLabel,
       getStyles,
+      stripePricingPopup,
     }
   },
   mounted() {
-    if (this.doc && this.doc.stripePricingTable) {
-      this.renderStripePricingTable()
-    }
+    // No need to render the table on page load as it will only be shown in popup
   },
   updated() {
-    if (this.doc && this.doc.stripePricingTable && this.$refs.stripePricingTableContainer) {
+    if (this.stripePricingPopup && this.doc && this.doc.stripePricingTable && this.$refs.stripePricingTablePopupContainer) {
       this.renderStripePricingTable()
     }
   },
