@@ -493,7 +493,8 @@ export const useEvents = () => {
       label: 'Stripe Pricing Table',
       description: 'Paste Stripe pricing table embed code here',
       component: 'TInputTextarea',
-      placeholder: '<script async src="https://js.stripe.com/v3/pricing-table.js"></script><stripe-pricing-table pricing-table-id="xxxx" publishable-key="xxxx"></stripe-pricing-table>',
+      placeholder:
+        '<script async src="https://js.stripe.com/v3/pricing-table.js"></script><stripe-pricing-table pricing-table-id="xxxx" publishable-key="xxxx"></stripe-pricing-table>',
     },
     {
       name: 'confirmation',
