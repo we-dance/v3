@@ -920,7 +920,6 @@ export default {
     openStripePricingTable() {
       this.$track('buy_ticket_stripe')
       this.stripePricingPopup = true
-
       // Use nextTick to ensure the DOM element is rendered
       this.$nextTick(() => {
         this.renderStripePricingTable()
@@ -944,8 +943,6 @@ export default {
     },
     attend() {
       this.$track('attend')
-
-      // Now using openStripePricingTable instead of buyTicket
       if (this.doc.stripePricingTable) {
         this.openStripePricingTable()
       } else {
