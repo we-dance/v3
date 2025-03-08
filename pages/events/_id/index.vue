@@ -237,9 +237,27 @@
           @click="buyTicket()"
           >{{ $t('event.buyTicket') }}</TButton
         >
-        <TButton v-else type="primary" @click="openStripePricingTable()">{{
-          $t('event.buyTicket')
-        }}</TButton>
+        <TButton
+          v-else-if="doc.stripePricingTable"
+          allow-guests
+          type="primary"
+          @click="openStripePricingTable()"
+          >{{ $t('event.buyTicket') }}</TButton
+        >
+        <TReaction
+          v-else
+          type="primary"
+          toggled-class="bg-green-500 hover:bg-green-800"
+          :label="$t('event.attend')"
+          :toggled-label="$t('event.attending')"
+          icon="CheckIcon"
+          toggled-icon="CheckIcon"
+          field="star"
+          class="rounded-full"
+          hide-count
+          :item="doc"
+          @joined="attend()"
+        />
         <TEventBookmark
           :event-id="doc.id"
           :event="doc"

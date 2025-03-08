@@ -121,7 +121,7 @@ export default {
       if (!this.to) {
         return ''
       }
-      if (this.to.includes('https://')) {
+      if (this.to.includes('://')) {
         return this.to
       }
       if (this.to.includes('mailto:')) {
