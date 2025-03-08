@@ -64,7 +64,11 @@
       @close="stripePricingPopup = false"
     >
       <div class="w-full max-w-lg p-4">
-        <div v-if="doc.stripePricingTable" ref="stripePricingTablePopupContainer" class="stripe-pricing-table-container"></div>
+        <div
+          v-if="doc.stripePricingTable"
+          ref="stripePricingTablePopupContainer"
+          class="stripe-pricing-table-container"
+        ></div>
         <div v-else class="text-center py-4">
           <p>No ticket options available for this event.</p>
         </div>
@@ -233,12 +237,9 @@
           @click="buyTicket()"
           >{{ $t('event.buyTicket') }}</TButton
         >
-        <TButton
-          v-else
-          type="primary"
-          @click="openStripePricingTable()"
-          >{{ $t('event.buyTicket') }}</TButton
-        >
+        <TButton v-else type="primary" @click="openStripePricingTable()">{{
+          $t('event.buyTicket')
+        }}</TButton>
         <TEventBookmark
           :event-id="doc.id"
           :event="doc"
@@ -919,7 +920,6 @@ export default {
     openStripePricingTable() {
       this.$track('buy_ticket_stripe')
       this.stripePricingPopup = true
-      
       // Use nextTick to ensure the DOM element is rendered
       this.$nextTick(() => {
         this.renderStripePricingTable()
@@ -943,8 +943,6 @@ export default {
     },
     attend() {
       this.$track('attend')
-      
-      // Now using openStripePricingTable instead of buyTicket
       if (this.doc.stripePricingTable) {
         this.openStripePricingTable()
       } else {
@@ -968,18 +966,20 @@ export default {
     },
     renderStripePricingTable() {
       if (!this.$refs.stripePricingTablePopupContainer) return
-      
+
       // Clear the container before adding new content
       this.$refs.stripePricingTablePopupContainer.innerHTML = ''
-      
+
       // Create a safe Stripe pricing table element
       const stripePricingTableElement = document.createElement('div')
       stripePricingTableElement.innerHTML = this.doc.stripePricingTable
-      
+
       // Add only stripe-pricing-table elements
-      const pricingTableElements = stripePricingTableElement.querySelectorAll('stripe-pricing-table')
+      const pricingTableElements = stripePricingTableElement.querySelectorAll(
+        'stripe-pricing-table'
+      )
       if (pricingTableElements.length > 0) {
-        pricingTableElements.forEach(element => {
+        pricingTableElements.forEach((element) => {
           this.$refs.stripePricingTablePopupContainer.appendChild(element)
         })
       }
@@ -1194,7 +1194,12 @@ export default {
     // No need to render the table on page load as it will only be shown in popup
   },
   updated() {
-    if (this.stripePricingPopup && this.doc && this.doc.stripePricingTable && this.$refs.stripePricingTablePopupContainer) {
+    if (
+      this.stripePricingPopup &&
+      this.doc &&
+      this.doc.stripePricingTable &&
+      this.$refs.stripePricingTablePopupContainer
+    ) {
       this.renderStripePricingTable()
     }
   },
