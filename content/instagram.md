@@ -21,8 +21,8 @@ Facebook:
 - https://www.facebook.com/ainawedance
 
 Instagram:
-👉 Alex: https://www.instagram.com/alexrazbakov
-👉 Aina: https://www.instagram.com/aina.kdukennstdenrest
+- Alex: https://www.instagram.com/alexrazbakov
+- Aina: https://www.instagram.com/aina.kdukennstdenrest
 
 Thank you for your support and understanding during this challenging time. If you have any questions, feel free to contact us via email or through our other social media channels.
 Alex, Aina and Your WeDance Team
