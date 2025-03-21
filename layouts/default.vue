@@ -1,12 +1,12 @@
 <template>
   <div class="border-t-2 border-primary">
     <TBanner
-      v-model="bannerCompetition"
-      name="competition"
-      desktop="Join WeDance Competition and Win 300€!"
-      mobile="Win 300€"
+      v-model="instagram"
+      name="instagram"
+      desktop="Important Information Regarding Our Instagram"
+      mobile="Important Information Regarding Our Instagram"
       action="Learn More"
-      to="/competition"
+      to="/instagram"
     />
 
     <div
@@ -203,16 +203,16 @@ export default {
       ls('bannerNews', val)
     })
 
-    const bannerCompetition = ref(ls('competition'))
-    watch(bannerCompetition, (val) => {
-      updateProfile({ bannerCompetition: val })
-      ls('competition', val)
+    const instagram = ref(ls('instagram'))
+    watch(instagram, (val) => {
+      updateProfile({ instagram: val })
+      ls('instagram', val)
     })
 
     return {
       bannerNps,
       bannerNews,
-      bannerCompetition,
+      instagram,
       username,
       account,
       profile,
