@@ -5,12 +5,12 @@ title: Important Information Regarding Our Instagram Accounts
 # Important Information Regarding Our Instagram Accounts
 
 Unfortunately, several of our official Instagram accounts have been deactivated by Instagram. We are working hard to resolve the issue and restore the affected accounts.
-In the meantime, we will keep you updated through our personal Instagram accounts, YouTube, Telegramm and Facebook. 
+In the meantime, we will keep you updated through our personal Instagram accounts, YouTube, Telegram and Facebook. 
 
 Follow us there to stay informed:
 YouTube: https://www.youtube.com/@wedancestory
 
-Telegramm:
+Telegram:
 - https://t.me/WeDancePlatform
 - https://t.me/WeDanceMunich
 - https://t.me/WeDanceBerlin
