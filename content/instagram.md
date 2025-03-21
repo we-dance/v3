@@ -8,19 +8,21 @@ Unfortunately, several of our official Instagram accounts have been deactivated 
 In the meantime, we will keep you updated through our personal Instagram accounts, YouTube, Telegram and Facebook. 
 
 Follow us there to stay informed:
-YouTube: https://www.youtube.com/@wedancestory
 
-Telegram:
+## YouTube
+- https://www.youtube.com/@wedancestory
+
+## Telegram
 - https://t.me/WeDancePlatform
 - https://t.me/WeDanceMunich
 - https://t.me/WeDanceBerlin
 
-Facebook:
+## Facebook
 - https://www.facebook.com/WeDanceMunich
 - https://www.facebook.com/wedanceberlin
 - https://www.facebook.com/ainawedance
 
-Instagram:
+## Instagram
 - Alex: https://www.instagram.com/alexrazbakov
 - Aina: https://www.instagram.com/aina.kdukennstdenrest
 
