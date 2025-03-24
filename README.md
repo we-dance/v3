@@ -26,7 +26,7 @@ Do you want to get a practical experience, learn to work in international team a
 6. Clone this repository and open the project folder.
 7. Copy `.env.example` file to `.env` file and set value of `FIREBASE_CONFIG` to one line JSON you got from step 5.
 
-To activate all services and features see section `Services` below.
+To activate all services and features see section `Services` below
 
 ## Run locally
 
