@@ -102,7 +102,7 @@
       >
     </div>
     <div class="mt-4 text-xs">
-      © WeDance 2024 – {{ $t('footer.copyright') }}
+      © WeDance 2025 – {{ $t('footer.copyright') }}
     </div>
   </div>
 </template>
