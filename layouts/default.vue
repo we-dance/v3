@@ -1,12 +1,12 @@
 <template>
   <div class="border-t-2 border-primary">
     <TBanner
-      v-model="instagram"
-      name="instagram"
-      desktop="Important Information Regarding Our Instagram"
-      mobile="Important Information Regarding Our Instagram"
+      v-model="releaseV4"
+      name="releaseV4"
+      desktop="Save The Date! Celebrate v4!"
+      mobile="Save The Date! Celebrate v4!"
       action="Learn More"
-      to="/instagram"
+      to="/wedance-v4"
     />
 
     <div
@@ -203,16 +203,16 @@ export default {
       ls('bannerNews', val)
     })
 
-    const instagram = ref(ls('instagram'))
-    watch(instagram, (val) => {
-      updateProfile({ instagram: val })
-      ls('instagram', val)
+    const releaseV4 = ref(ls('releaseV4'))
+    watch(releaseV4, (val) => {
+      updateProfile({ releaseV4: val })
+      ls('releaseV4', val)
     })
 
     return {
       bannerNps,
       bannerNews,
-      instagram,
+      releaseV4,
       username,
       account,
       profile,

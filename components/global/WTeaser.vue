@@ -11,8 +11,7 @@
         :title="button"
         class="my-2 no-underline"
         type="primary"
-        :to="url"
-        :href="href"
+        :to="href"
         v-on="$listeners"
         >{{ button }}</TButton
       >
