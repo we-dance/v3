@@ -1,25 +1,30 @@
 ---
-title: WeDance v4 – 17 May 2025
+title: WeDance v4
 ---
 
-# WeDance v4 – 17 May 2025
+# WeDance Insider
 
-![Save The Date! WeDance v4 Release on 17 May](/img/v4.jpg)
+Help shape the next chapter of dance tech — from the inside.
 
-Dive into our biggest release yet: a live stream, an AMA with the founders, and a laid‑back picnic in Munich’s English Garden!
+We’re inviting dancers, organizers, and artists to join the **WeDance Insider Crew** — our behind-the-scenes squad that helps test features early, gives feedback, and gets the inside scoop before anyone else.
 
-## Schedule
+As an Insider, you get:
 
-| Time              | What            | Where                                                      |
-| ----------------- | --------------- | ---------------------------------------------------------- |
-| **12:00 – 13:00** | Live Stream     | [YouTube @wedancevip](https://www.youtube.com/@wedancevip) |
-| **13:30 – 14:30** | Ask Me Anything | Google Meet (link to follow)                               |
-| **15:00 – 18:00** | Picnic & Dance  | English Garden, Munich                                     |
+- First access to v4 features before public release
+- A real voice in what we build next
+- Private test groups + direct feedback channels
+- Sneak peeks, exclusive content, and early invites
 
-### Sun ☀️ Water 🌊 Play 🎉 Relax 🌿 Dance 💃
+**If you live for dance _and_ love being ahead of the curve — this is your backstage pass.**
 
-<w-teaser
-title="Save the date"
-description="17 May: Live Stream, AMA & Picnic in Munich’s English Garden"
-button="Add To Calendar"
-href="https://calendar.app.google/X2esT3hqRyyudRhY8"></w-teaser>
+👉 [Join the Insider Program](https://forms.gle/2dybHGduWA3GZkwy9)
+
+## WeDance v4 is coming. And it’s gonna be 🔥
+
+We’re rolling out big changes — smoother tools, faster flows, and tons of fresh energy. Here's where you’ll catch it all:
+
+- [YouTube](https://www.youtube.com/@wedancevip) — Feature reveals, walkthroughs, behind-the-scenes
+- [Telegram](https://t.me/wedancevip) — Tips, feature drops, real-world use cases
+- [Instagram](https://instagram.com/wedance.vip) — Giveaways, interviews, dance-offs, and backstage vibes
+
+**Follow us now so you don’t miss a step!**

@@ -3,8 +3,8 @@
     <TBanner
       v-model="releaseV4"
       name="releaseV4"
-      desktop="Save The Date! Celebrate v4!"
-      mobile="Save The Date! Celebrate v4!"
+      desktop="See what's coming soon"
+      mobile="See what's coming soon"
       action="Learn More"
       to="/wedance-v4"
     />

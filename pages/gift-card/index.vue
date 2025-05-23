@@ -2,26 +2,34 @@
   <div>
     <div class="p-4">
       <h1 class="text-4xl font-extrabold text-center">
-        Share your social media instantly
+        Give the Gift of Dance
       </h1>
       <div class="flex justify-center pt-4">
         <img
-          src="/img/nfc-screenshot.png"
-          alt="WeDance Card Screenshot"
+          src="/img/gift-card.png"
+          alt="WeDance Gift Card Screenshot"
           class="h-[50vh]"
         />
       </div>
       <div class="text-center text-xl text-gray-700 mb-4">
-        Turn a simple handshake into a lasting connection
+        Surprise your dance-loving friend with a gift card they can use for
+        classes, events, or dance gear—so they can follow their passion!
       </div>
 
-      <div class="flex justify-center py-4">
+      <div class="flex justify-center gap-4 py-4">
         <TButton
           type="primary"
           allow-guests
-          to="https://wedance.gumroad.com/l/vip-card"
+          to="https://buy.stripe.com/aFaaEW2U94wB2kD15V5sA00"
           target="_blank"
-          >Order a card</TButton
+          >Order Gift Card</TButton
+        >
+        <TButton
+          type="secondary"
+          allow-guests
+          to="https://forms.gle/EeKJXy3wuDSyH25v7"
+          target="_blank"
+          >Redeem</TButton
         >
       </div>
 
@@ -33,9 +41,9 @@
           <DeviceMobileIcon class="mt-1 text-primary w-6" />
         </div>
         <div>
-          <div class="text-lg font-bold">Tap the card</div>
+          <div class="text-lg font-bold">Choose Amount & Recipient</div>
           <div class="text-sm text-gray-700">
-            Tap your card on your phone
+            Select the gift amount and enter your friend's phone number.
           </div>
         </div>
       </div>
@@ -44,9 +52,10 @@
           <LinkIcon class="mt-1 text-primary w-6" />
         </div>
         <div>
-          <div class="text-lg font-bold">Link your profile</div>
+          <div class="text-lg font-bold">Order & Receive the Card</div>
           <div class="text-sm text-gray-700">
-            Add your social media links
+            Place your order and get the gift card shipped to you—ready to
+            present in person.
           </div>
         </div>
       </div>
@@ -55,10 +64,10 @@
           <ThumbUpIcon class="mt-1 text-primary w-6" />
         </div>
         <div>
-          <div class="text-lg font-bold">Start networking</div>
+          <div class="text-lg font-bold">Recipient Redeems the Gift</div>
           <div class="text-sm text-gray-700">
-            Share your profile by tapping your card on other person’s mobile and
-            start networking faster.
+            The birthday person redeems their gift by filling out a form with
+            their phone number and event link.
           </div>
         </div>
       </div>

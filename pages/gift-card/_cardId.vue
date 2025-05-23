@@ -18,33 +18,32 @@
       <div class="flex justify-center py-4">
         <TButton
           type="primary"
-          allow-guests
-          to="https://wedance.gumroad.com/l/vip-card"
+          :to="`/nfc/${$route.params.cardId}?connect=true`"
           target="_blank"
-          >Order a card</TButton
+          >Link your Profile</TButton
         >
       </div>
 
       <h2 class="text-3xl font-extrabold text-center mt-4 mb-2">
-        How it works
+        Next steps
       </h2>
-      <div class="flex gap-4 items-start mb-4">
-        <div>
-          <DeviceMobileIcon class="mt-1 text-primary w-6" />
-        </div>
-        <div>
-          <div class="text-lg font-bold">Tap the card</div>
-          <div class="text-sm text-gray-700">
-            Tap your card on your phone
-          </div>
-        </div>
-      </div>
       <div class="flex gap-4 items-start mb-4">
         <div>
           <LinkIcon class="mt-1 text-primary w-6" />
         </div>
         <div>
           <div class="text-lg font-bold">Link your profile</div>
+          <div class="text-sm text-gray-700">
+            Login or register
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-4 items-start mb-4">
+        <div>
+          <UserCircleIcon class="mt-1 text-primary w-6" />
+        </div>
+        <div>
+          <div class="text-lg font-bold">Edit your profile</div>
           <div class="text-sm text-gray-700">
             Add your social media links
           </div>
@@ -67,17 +66,55 @@
 </template>
 
 <script>
-import {
-  DeviceMobileIcon,
-  LinkIcon,
-  ThumbUpIcon,
-} from '@vue-hero-icons/outline'
+import { onMounted } from '@nuxtjs/composition-api'
+import { UserCircleIcon, LinkIcon, ThumbUpIcon } from '@vue-hero-icons/outline'
+import { until } from '@vueuse/core'
+import { db } from '~/plugins/firebase'
+import { useAuth } from '~/use/auth'
 
 export default {
   components: {
-    DeviceMobileIcon,
+    UserCircleIcon,
     LinkIcon,
     ThumbUpIcon,
+  },
+  async asyncData({ params, error, redirect }) {
+    const cardId = params.cardId
+    const cardRef = await db
+      .collection('cards')
+      .doc(cardId)
+      .get()
+
+    if (!cardRef.exists) {
+      error({ statusCode: 404, message: 'Card not found' })
+    }
+
+    const card = cardRef.data()
+
+    if (card.username) {
+      redirect(`/${card.username}?ref=nfc`)
+    }
+  },
+  setup(props, { root }) {
+    const { profile, username, uid } = useAuth()
+
+    onMounted(async () => {
+      await until(profile).not.toBeNull()
+
+      if (username.value && root.$route.query.connect === 'true') {
+        await db
+          .collection('cards')
+          .doc(root.$route.params.cardId)
+          .update({
+            username: username.value,
+            uid: uid.value,
+            connectedAt: +new Date(),
+            state: 'connected',
+          })
+
+        root.$router.push(`/${username.value}?nfc=connected`)
+      }
+    })
   },
 }
 </script>
