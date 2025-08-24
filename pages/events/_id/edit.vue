@@ -272,8 +272,9 @@ export default {
             untilDate: '',
           },
         }
+        const cleanedData = pickBy(childData, (v) => v !== undefined)
 
-        children.push(childData)
+        children.push(cleanedData)
       }
 
       // remove deleted children
